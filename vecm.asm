@@ -526,7 +526,7 @@ __vec3_cross:
 
     movups xmm0, [rdi]
     movups xmm1, [rsi]
-    movaps xmm2,xmm0         ;Copies
+    movaps xmm2,xmm0        ;Copies
     movaps xmm3,xmm1
 
     shufps xmm0,xmm0,0xd8    ;Exchange 2 and 3 element (V1)
@@ -540,6 +540,6 @@ __vec3_cross:
     subps  xmm0,xmm2
     movq [rax], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + 8], xmm0 ;
+    movq [rax + 8], xmm0
 .done:
     ret
