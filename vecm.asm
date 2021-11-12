@@ -319,7 +319,7 @@ __vec_abs:
     ret
 
 
-; __vec_add_s(v1, s, len)
+; __vec_sadd(v1, s, len)
 ; 
 ;   rdi = v1
 ;   rsi = s
@@ -353,7 +353,7 @@ __vec_sadd:
     ret
 
 
-; __vec_sub_s(v1, s, len)
+; __vec_ssub(v1, s, len)
 ; 
 ;   rdi = v1
 ;   rsi = s
@@ -387,7 +387,7 @@ __vec_ssub:
     ret
 
 
-; __vec_mul_s(v1, s, len)
+; __vec_smul(v1, s, len)
 ; 
 ;   rdi = v1
 ;   rsi = s
@@ -421,7 +421,7 @@ __vec_smul:
     ret
 
 
-; __vec_div_s(v1, s, len)
+; __vec_sdiv(v1, s, len)
 ; 
 ;   rdi = v1
 ;   rsi = s
