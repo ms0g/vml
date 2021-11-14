@@ -19,12 +19,12 @@ global __vec_dot
 global __vec3_cross
 extern _calloc
 
-; __vec_add(v1, v2, len)
-; 
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; -------------------------------------------------------------
+; float *_vec_add(float *const v1, float *const v2, int len)  ;
+; rdi = v1                                                    ;
+; rsi = v2                                                    ;
+; rdx = len                                                   ;
+; -------------------------------------------------------------
 __vec_add:
     push rdi
     push rsi
@@ -42,7 +42,7 @@ __vec_add:
     addps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -52,12 +52,12 @@ __vec_add:
     ret
 
 
-; __vec_sub(v1, v2, len)
-; 
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; -------------------------------------------------------------
+; float *_vec_sub(float *const v1, float *const v2, int len)  ;
+; rdi = v1                                                    ;
+; rsi = v2                                                    ;
+; rdx = len                                                   ;
+; -------------------------------------------------------------
 __vec_sub:
     push rdi
     push rsi
@@ -75,7 +75,7 @@ __vec_sub:
     subps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -85,12 +85,12 @@ __vec_sub:
     ret
 
 
-; __vec_mul(v1, v2, len)
-;
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; -------------------------------------------------------------
+; float *_vec_mul(float *const v1, float *const v2, int len)  ;
+; rdi = v1                                                    ;
+; rsi = v2                                                    ;
+; rdx = len                                                   ;
+; ------------------------------------------------------------- 
 __vec_mul:
     push rdi
     push rsi
@@ -108,7 +108,7 @@ __vec_mul:
     mulps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -118,12 +118,12 @@ __vec_mul:
     ret
 
 
-; __vec_div(v1, v2, len)
-;
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; -------------------------------------------------------------
+; float *_vec_div(float *const v1, float *const v2, int len)  ;
+; rdi = v1                                                    ;
+; rsi = v2                                                    ;
+; rdx = len                                                   ;
+; -------------------------------------------------------------
 __vec_div:
     push rdi
     push rsi
@@ -141,7 +141,7 @@ __vec_div:
     divps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -151,12 +151,12 @@ __vec_div:
     ret
 
 
-; __vec_max(v1, v2, len)
-;
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; -------------------------------------------------------------
+; float *_vec_max(float *const v1, float *const v2, int len)  ;
+; rdi = v1                                                    ;
+; rsi = v2                                                    ;
+; rdx = len                                                   ;
+; ------------------------------------------------------------- 
 __vec_max:
     push rdi
     push rsi
@@ -174,7 +174,7 @@ __vec_max:
     maxps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -184,12 +184,12 @@ __vec_max:
     ret
 
 
-; __vec_min(v1, v2, len)
-;
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; -------------------------------------------------------------
+; float *_vec_min(float *const v1, float *const v2, int len)  ;
+; rdi = v1                                                    ;
+; rsi = v2                                                    ;
+; rdx = len                                                   ;
+; ------------------------------------------------------------- 
 __vec_min:
     push rdi
     push rsi
@@ -207,7 +207,7 @@ __vec_min:
     minps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -217,13 +217,13 @@ __vec_min:
     ret
 
 
-; __vec_norm(v1, len)
-;
-;   rdi = v1
-;   rsi = len
-;   
+; -------------------------------------------------------------
+; float *_vec_norm(float *const v1, int len)                  ;   
+; rdi = v1                                                    ;
+; rsi = len                                                   ;                                               
+; -------------------------------------------------------------
 __vec_norm:
-    sub rsp, 8 
+    sub rsp, 8 ; fix stack alignment
     push rdi
     push rsi
     mov rdi, rsi
@@ -243,7 +243,7 @@ __vec_norm:
     divps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rsi, 4
     je .done ; if len is zero, we are done
@@ -254,11 +254,11 @@ __vec_norm:
     ret
 
 
-; __vec_neg(v1, len)
-;
-;   rdi = v1
-;   rsi = len
-;   
+; -------------------------------------------------------------
+; float *_vec_neg(float *const v1, int len)                   ;   
+; rdi = v1                                                    ;
+; rsi = len                                                   ;                                               
+; -------------------------------------------------------------
 __vec_neg:
     sub rsp, 8 ; fix stack alignment
     push rdi
@@ -277,7 +277,7 @@ __vec_neg:
     mulps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rsi, 4
     je .done ; if len is zero, we are done
@@ -288,11 +288,11 @@ __vec_neg:
     ret
 
 
-; __vec_abs(v1, len)
-;
-;   rdi = v1
-;   rsi = len
-;   
+; -------------------------------------------------------------
+; float *_vec_abs(float *const v1, int len)                   ;   
+; rdi = v1                                                    ;
+; rsi = len                                                   ;                                               
+; -------------------------------------------------------------
 __vec_abs:
     sub rsp, 8 ; fix stack alignment
     push rdi
@@ -308,7 +308,7 @@ __vec_abs:
     pabsd xmm0, xmm0
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rsi, 4
     je .done ; if len is zero, we are done
@@ -318,13 +318,12 @@ __vec_abs:
     add rsp, 8
     ret
 
-
-; __vec_sadd(v1, s, len)
-; 
-;   rdi = v1
-;   rsi = s
-;   rdx = len
-;   
+; --------------------------------------------------------------
+; float *_vec_sadd(float *const v1, const int scalar, int len) ;
+; rdi = v1                                                     ;
+; rsi = scalar                                                 ;
+; rdx = len                                                    ;
+; --------------------------------------------------------------  
 __vec_sadd:
     push rdi
     push rsi
@@ -343,7 +342,7 @@ __vec_sadd:
     addps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -353,12 +352,12 @@ __vec_sadd:
     ret
 
 
-; __vec_ssub(v1, s, len)
-; 
-;   rdi = v1
-;   rsi = s
-;   rdx = len
-;   
+; --------------------------------------------------------------
+; float *_vec_ssub(float *const v1, const int scalar, int len) ;
+; rdi = v1                                                     ;
+; rsi = scalar                                                 ;
+; rdx = len                                                    ;
+; --------------------------------------------------------------  
 __vec_ssub:
     push rdi
     push rsi
@@ -377,7 +376,7 @@ __vec_ssub:
     subps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -387,12 +386,12 @@ __vec_ssub:
     ret
 
 
-; __vec_smul(v1, s, len)
-; 
-;   rdi = v1
-;   rsi = s
-;   rdx = len
-;   
+; --------------------------------------------------------------
+; float *_vec_smul(float *const v1, const int scalar, int len) ;
+; rdi = v1                                                     ;
+; rsi = scalar                                                 ;
+; rdx = len                                                    ;
+; --------------------------------------------------------------  
 __vec_smul:
     push rdi
     push rsi
@@ -411,7 +410,7 @@ __vec_smul:
     mulps xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits 
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -421,12 +420,12 @@ __vec_smul:
     ret
 
 
-; __vec_sdiv(v1, s, len)
-; 
-;   rdi = v1
-;   rsi = s
-;   rdx = len
-;   
+; --------------------------------------------------------------
+; float *_vec_sdiv(float *const v1, const int scalar, int len) ;
+; rdi = v1                                                     ;
+; rsi = scalar                                                 ;
+; rdx = len                                                    ;
+; --------------------------------------------------------------  
 __vec_sdiv:
     push rdi
     push rsi
@@ -445,7 +444,7 @@ __vec_sdiv:
     divss xmm0, xmm1
     movq [rax + rcx * 4], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + rcx * 4 + 8], xmm0 ;
+    movq [rax + rcx * 4 + 8], xmm0 ; upper 64 bits
     add rcx, 4
     sub rdx, 4
     je .done ; if len is zero, we are done
@@ -455,11 +454,11 @@ __vec_sdiv:
     ret
 
 
-; __vec_len(v1, len)
-; 
-;   rdi = v1
-;   rsi = len
-;   
+; -------------------------------------------------------------
+; float _vec_len(float *const v1, int len)                    ;   
+; rdi = v1                                                    ;
+; rsi = len                                                   ;                                               
+; -------------------------------------------------------------
 __vec_len:
    xor rcx, rcx
    xorps xmm1, xmm1
@@ -479,12 +478,12 @@ __vec_len:
     ret
 
 
-; __vec_dot(v1, v2, len)
-; 
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; -----------------------------------------------------------
+; float _vec_dot(float *const v1, float *const v2, int len) ;
+; rdi = v1                                                  ;
+; rsi = v2                                                  ;
+; rdx = len                                                 ;
+; -----------------------------------------------------------
 __vec_dot:
    xor rcx, rcx
    xorps xmm2, xmm2
@@ -507,12 +506,12 @@ __vec_dot:
     ret
 
 
-; __vec_cross(v1, v2, len)
-; 
-;   rdi = v1
-;   rsi = v2
-;   rdx = len
-;   
+; ---------------------------------------------------------------
+; float *_vec3_cross(float *const v1, float *const v2, int len) ;
+; rdi = v1                                                      ;
+; rsi = v2                                                      ;
+; rdx = len                                                     ;
+; ---------------------------------------------------------------
 __vec3_cross:
     push rdi
     push rsi
@@ -540,6 +539,6 @@ __vec3_cross:
     subps  xmm0,xmm2
     movq [rax], xmm0 ; lower 64 bits
     movhlps xmm0,xmm0 ; move high 64 bits to low 64 bits.
-    movq [rax + 8], xmm0
+    movq [rax + 8], xmm0 ; upper 64 bits
 .done:
     ret
