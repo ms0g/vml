@@ -1,4 +1,4 @@
-# vecm
+# vml
 SIMD-accelerated Vector math library
 ### Prerequisites
 + [nasm](https://www.nasm.us "Nasm project page") (>= 2.15)
