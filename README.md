@@ -1,23 +1,19 @@
 # vml
-SIMD-accelerated Vector math library
+SIMD-accelerated Vector Math Library
 ### Prerequisites
 + [nasm](https://www.nasm.us "Nasm project page") (>= 2.15)
 
 ### Building
 on MacOS:
 ```bash
-nasm -fmacho64 vecm.asm
-```
-on Linux:
-```bash
-nasm -felf64 vecm.asm
+make
 ```
 ### Usage
 ```C
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "vecm.h"
+#include "vml.h"
 
 int main(int argc, char** argv) {
     float v1[] = {1, 3, 5, 7, 9};
