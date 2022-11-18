@@ -1,6 +1,10 @@
 #ifndef VML_H
 #define VML_H
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 extern float *_vec_add(float *const v1, float *const v2, int len);      // v1 + v2
 extern float *_vec_sub(float *const v1, float *const v2, int len);      // v1 - v2
 extern float *_vec_mul(float *const v1, float *const v2, int len);      // v1 * v2
@@ -18,4 +22,8 @@ extern float *_vec_norm(float *const v1, int len);                      // norma
 extern float *_vec_neg(float *const v1, int len);                       // -v1
 extern float *_vec_abs(float *const v1, int len);                       // |v1|
 
+#ifdef __cplusplus
+}
 #endif
+
+#endif // VML_H
