@@ -4,7 +4,6 @@ SIMD-accelerated Vector Math Library
 + [nasm](https://www.nasm.us "Nasm project page") (>= 2.15)
 
 ### Building
-on MacOS:
 ```bash
 make
 ```
@@ -32,7 +31,7 @@ int main(int argc, char** argv) {
 }
 ```
 ```bash
-➜  vecm git:(main) ✗ ./test 
+➜  vml git:(main) ✗ ./main 
 3.000000
 7.000000
 11.000000
