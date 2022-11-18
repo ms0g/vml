@@ -1,20 +1,18 @@
 CC=clang
 ASM=nasm
-OUT=test
-OBJS=test.o vecm.o 
-CFLAGS=-O3 -march=native -Wall -Werror -std=gnu11 -g
+OUT=vml.so
+SRC=src/vml.asm
+OBJS=src/vml.o 
+CCFLAGS=-shared
 AFLAGS=-fmacho64
 
-all: clean $(OUT)
+all: $(OUT)
+
+$(OBJS): $(SRC)
+	$(ASM) $(AFLAGS) $<
 
 $(OUT): $(OBJS)
-	$(CC) $^ -o $@ 
-
-test.o: test.c
-	$(CC) $(CFLAGS) -c $<
-
-vecm.o: vecm.asm
-	$(ASM) $(AFLAGS) $<
+	$(CC) $^ -o $@ $(CCFLAGS)
 
 clean:
 	rm -f  $(OUT) $(OBJS)
