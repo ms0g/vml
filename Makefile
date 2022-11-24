@@ -1,6 +1,6 @@
 CC=clang
 ASM=nasm
-OUT=vml.so
+OUT=libvml.so
 SRC=src/vml.asm
 OBJS=src/vml.o 
 CCFLAGS=-shared
