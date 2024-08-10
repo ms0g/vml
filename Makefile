@@ -1,7 +1,7 @@
 CC=clang
 ASM=nasm
 OUT=vml.so
-SRC=src/vml.asm
+SRC=src/vml.s
 OBJS=src/vml.o 
 CCFLAGS=-shared
 AFLAGS=-fmacho64
