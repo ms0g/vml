@@ -249,7 +249,7 @@ __vec_sdiv:
     shufps xmm1, xmm1, 0x00 
 .l:
     movups xmm0, [rsi + r8 * 4]
-    divss xmm0, xmm1
+    divps xmm0, xmm1
     movq [rdi + r8 * 4], xmm0       ;lower 64 bits
     movhlps xmm0, xmm0              ;move high 64 bits to low 64 bits.
     movq [rdi + r8 * 4 + 8], xmm0   ;upper 64 bits
