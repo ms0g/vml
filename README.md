@@ -17,12 +17,14 @@ make
 int main(int argc, char** argv) {
     float v1[] = {1, 3, 5, 7, 9};
     float v2[] = {2, 4, 6, 8, 10};
-    unsigned size = sizeof(v1)/sizeof(float);
+    float result[5];
+
+    unsigned int size = sizeof(v1)/sizeof(float);
     
-    float *res = _vec_add(v1,v2, size);
+    _vec_add(result, v1, v2, size);
  
     for (int i = 0; i < size; i++) {
-        printf("%f\n", res[i]);
+        printf("%f\n", result[i]);
     }
     
     free(res);
