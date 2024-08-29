@@ -18,12 +18,12 @@ int main(int argc, char** argv) {
     }
     elapsed = (double)((clock() - start)) / CLOCKS_PER_SEC;
 
-    printf("No SIMD: %f\n", elapsed);
+    printf("No SIMD: %fs\n", elapsed);
 
     start = clock();
     _vec_add(result, v1, v2, size);
     elapsed = (double)((clock() - start)) / CLOCKS_PER_SEC;
 
-    printf("SIMD: %f\n", elapsed);
+    printf("SIMD: %fs\n", elapsed);
     return 0;
 }
