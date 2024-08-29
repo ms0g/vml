@@ -1,18 +1,26 @@
 CC=clang
 ASM=nasm
-OUT=vml.so
-SRC=src/vml.s
-OBJS=src/vml.o 
-CCFLAGS=-shared
+OBJS=./build/vml/vml.s.o
 AFLAGS=-fmacho64
+OS := $(shell uname -s)
 
-all: $(OUT)
+ifeq ($(OS), Darwin)
+    CFLAGS := -dynamiclib
+	LIB = libvml.dylib
+endif
+ifeq ($(OS), Linux)        
+    CFLAGS := -shared
+	LIB = libvml.so
+endif
 
-$(OBJS): $(SRC)
-	$(ASM) $(AFLAGS) $<
+all: ./bin/$(LIB)
 
-$(OUT): $(OBJS)
-	$(CC) $^ -o $@ $(CCFLAGS)
+./bin/$(LIB): ./build/vml/vml.s.o
+	$(CC) ./build/vml/vml.s.o $(CFLAGS) -o ./bin/$(LIB)
+
+./build/vml/vml.s.o: ./src/vml.s
+	$(ASM) $(AFLAGS) ./src/vml.s -o ./build/vml/vml.s.o
 
 clean:
-	rm -f  $(OUT) $(OBJS)
+	rm -rf ./bin/*
+	rm -rf $(OBJS)
