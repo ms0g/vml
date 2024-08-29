@@ -45,8 +45,8 @@ int main(int argc, char** argv) {
 ### Benchmark
 ```bash
 ➜  bin git:(main) ✗ ./benchmark
-No SIMD: 0.000004
-SIMD: 0.000002
+No SIMD: 0.000004s
+SIMD: 0.000002s
 ```
 
 ### Contributing
