@@ -51,7 +51,7 @@ SIMD: 0.000002
 
 ### Contributing
 
-Contributions to improve the game are welcome! If you have ideas for enhancements or bug fixes, feel free to fork the repository, make your changes, and submit a pull request.
+Contributions are welcome! Please submit a pull request or open an issue to discuss changes.
 
 ### License
 
