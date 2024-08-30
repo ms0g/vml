@@ -1,16 +1,16 @@
 CC=clang
 ASM=nasm
 OBJS=./build/vml/vml.s.o
-AFLAGS=-fmacho64
 OS := $(shell uname -s)
 
 ifeq ($(OS), Darwin)
     CFLAGS := -dynamiclib
-	LIB = libvml.dylib
-endif
-ifeq ($(OS), Linux)        
+	AFLAGS := -fmacho64
+	LIB := libvml.dylib
+else ifeq ($(OS), Linux)        
     CFLAGS := -shared
-	LIB = libvml.so
+	AFLAGS := -felf64
+	LIB := libvml.so
 endif
 
 all: ./bin/$(LIB)
