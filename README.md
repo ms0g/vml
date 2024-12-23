@@ -57,7 +57,4 @@ Contributions are welcome! Please submit a pull request or open an issue to disc
 
 This project is licensed under the LGPL License. See the LICENSE file for details.
 
-## Credits
-
-Developed by M. Sami Gürpınar
 
